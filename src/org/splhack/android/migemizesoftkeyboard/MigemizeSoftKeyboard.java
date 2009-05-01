@@ -85,6 +85,7 @@ public class MigemizeSoftKeyboard extends InputMethodService
      */
     @Override public void onCreate() {
         super.onCreate();
+		me = getBaseContext();
         mWordSeparators = getResources().getString(R.string.word_separators);
     }
     
@@ -572,7 +573,7 @@ public class MigemizeSoftKeyboard extends InputMethodService
         final int length = mComposing.length();
         if (length > 1) {
             mComposing.delete(length - 1, length);
-            getCurrentInputConnection().setComposingText(mComposing, 1);
+            getCurrentInputConnection().setComposingText(mComposing, mComposing.length());
             updateCandidates();
         } else if (length > 0) {
             mComposing.setLength(0);
@@ -613,7 +614,7 @@ public class MigemizeSoftKeyboard extends InputMethodService
         }
         if (isAlphabet(primaryCode) && mPredictionOn) {
             mComposing.append((char) primaryCode);
-            getCurrentInputConnection().setComposingText(mComposing, 1);
+            getCurrentInputConnection().setComposingText(mComposing, mComposing.length());
             updateShiftKeyState(getCurrentInputEditorInfo());
             updateCandidates();
         } else {
@@ -664,6 +665,8 @@ public class MigemizeSoftKeyboard extends InputMethodService
             // If we were generating candidate suggestions for the current
             // text, we would commit one of them here.  But for this sample,
             // we will just commit the current text.
+			mComposing =
+				new StringBuilder(mCandidateView.getSuggestionAt(index));
             commitTyped(getCurrentInputConnection());
         }
     }

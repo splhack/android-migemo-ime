@@ -168,7 +168,7 @@ public class CandidateView extends View {
             }
         }
         int x = 0;
-        final int count = mSuggestions.size();
+        final int count = Math.min(mSuggestions.size(), MAX_SUGGESTIONS);
         final int height = getHeight();
         final Rect bgPadding = mBgPadding;
         final Paint paint = mPaint;

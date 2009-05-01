@@ -232,7 +232,7 @@ public class Migemo {
 		boolean bl=true; // letter
 		boolean bn=false; // number
 		boolean bd=true; // lookup dictionary
-		boolean be=false;
+		boolean be=true; // expand consonant
 		HashSet hs = new HashSet();
 		if (bd) {
 			lookupDictionary(si,be,hs);

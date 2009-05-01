@@ -78,11 +78,11 @@ class Dictionary {
 			InputStream is =
 				MigemizeSoftKeyboard.me.getResources().getAssets().open("dict");
 			nl = is.available();
-			nc = nl;
 			byte[] b = new byte[nl];
 			is.read(b);
 			is.close();
-			cld = String.valueOf(b).toCharArray();
+			cld = (new String(b)).toCharArray();
+			nc = cld.length;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;

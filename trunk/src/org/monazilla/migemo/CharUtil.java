@@ -71,8 +71,9 @@ class CharUtil {
 		mRoma2Hira = hm;
 		BufferedReader br=null;
 		try {
-			//br = new BufferedReader(new InputStreamReader(new FileInputStream(new File("/data/data/r2h.txt")),"UTF-8"));
-			br = new BufferedReader(new InputStreamReader(com.example.android.softkeyboard.SoftKeyboard.me.getResources().openRawResource(R.raw.r2h), "UTF-8"));
+			br = new BufferedReader(new InputStreamReader(
+				MigemizeSoftKeyboard.me.getResources().getAssets().open("r2h"),
+					"UTF-8"));
 			String sl;
 			while ((sl=br.readLine())!=null) {
 				String[] sll = sl.split("\t");

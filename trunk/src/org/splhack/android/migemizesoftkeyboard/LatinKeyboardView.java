@@ -14,9 +14,8 @@
  * the License.
  */
 
-package com.example.android.softkeyboard;
+package org.splhack.android.migemizesoftkeyboard;
 
-import org.splhack.android.migemizesoftkeyboard.*;
 import android.content.Context;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;

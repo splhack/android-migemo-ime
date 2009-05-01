@@ -71,40 +71,24 @@ class Dictionary {
 			return true;
 		}
 		*/
-		int nl = 4018336;
-		char[] cld = new char[nl];
-		InputStreamReader isr=null;
+		int nl;
+		char[] cld;
 		int nc=0;
 		try {
-			isr = new InputStreamReader(com.example.android.softkeyboard.SoftKeyboard.me.getResources().openRawResource(R.raw.dict), (se!=null)?se:"UTF-8");
-			int nr;
-			while ((nr=isr.read(cld,nc,nl-nc))>=0) {
-				if (nr>0) {
-					nc += nr;
-					if (nc>=nl) {
-						break;
-					}
-				}
-			}
+			InputStream is =
+				MigemizeSoftKeyboard.me.getResources().getAssets().open("dict");
+			nl = is.available();
+			nc = nl;
+			byte[] b = new byte[nl];
+			is.read(b);
+			is.close();
+			cld = String.valueOf(b).toCharArray();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
-		} finally {
-			if (isr!=null) {
-				try {
-					isr.close();
-				} catch (IOException e) {}
-			}
 		}
-
-		if (nc==0) {
+		if (nc==0)
 			return true;
-		}
-		if (nc<nl) {
-			char[] cln = new char[nc];
-			System.arraycopy(cld,0,cln,0,nc);
-			cld = cln;
-		}
 
 		// Parse
 		int[] il = new int[nc];
